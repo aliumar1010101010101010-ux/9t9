@@ -1,191 +1,662 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DSF STUDENT COUNCIL</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  background:#050505;color:#eee;font-family:'Rajdhani',sans-serif;
+  background:#050505;
+  color:#eee;
+  font-family:'Rajdhani',sans-serif;
   overflow-x:hidden;
 }
+
 body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;
-  background-image:linear-gradient(rgba(255,0,0,.25) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,0,0,.25) 1px,transparent 1px);
-  background-size:40px 40px;z-index:10;
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.07;
+  background-image:
+    linear-gradient(rgba(255,0,0,.25) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,0,0,.25) 1px,transparent 1px);
+  background-size:40px 40px;
+  z-index:10;
 }
-.noise{position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.025;background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9;
+  opacity:.025;
+  background:repeating-linear-gradient(
+    0deg,
+    #fff 0 1px,
+    transparent 1px 3px
+  );
+}
+
 header{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
-  position:relative;overflow:hidden;
-  background:radial-gradient(circle at center,#350000 0%,#100000 27%,#050505 68%);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(
+    circle at center,
+    #350000 0%,
+    #100000 27%,
+    #050505 68%
+  );
 }
+
 header:after{
-  content:"";position:absolute;width:650px;height:650px;border:1px solid #550000;
-  border-radius:50%;box-shadow:0 0 0 80px rgba(130,0,0,.08),0 0 0 160px rgba(130,0,0,.05);
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  border:1px solid #550000;
+  border-radius:50%;
+  box-shadow:
+    0 0 0 80px rgba(130,0,0,.08),
+    0 0 0 160px rgba(130,0,0,.05);
 }
+
 .warning{
-  position:absolute;top:28px;left:50%;transform:translateX(-50%);
-  color:#ff2020;border:1px solid #8b0000;padding:8px 18px;letter-spacing:4px;
-  font:700 12px Orbitron;z-index:2;background:#090909cc;
+  position:absolute;
+  top:28px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#ff2020;
+  border:1px solid #8b0000;
+  padding:8px 18px;
+  letter-spacing:4px;
+  font:700 12px Orbitron;
+  z-index:2;
+  background:#090909cc;
 }
-.hero{position:relative;z-index:3;padding:30px}
-.kicker{color:#b00000;font:700 14px Orbitron;letter-spacing:8px;margin-bottom:20px}
+
+.hero{
+  position:relative;
+  z-index:3;
+  padding:30px;
+}
+
+.kicker{
+  color:#b00000;
+  font:700 14px Orbitron;
+  letter-spacing:8px;
+  margin-bottom:20px;
+}
+
 h1{
-  font:900 clamp(48px,10vw,115px) Orbitron;letter-spacing:5px;
-  color:#e50914;text-shadow:0 0 12px #e50914,5px 5px 0 #240000;
+  font:900 clamp(48px,10vw,115px) Orbitron;
+  letter-spacing:5px;
+  color:#e50914;
+  text-shadow:
+    0 0 12px #e50914,
+    5px 5px 0 #240000;
 }
-.subtitle{font:600 clamp(16px,2.5vw,25px) Rajdhani;letter-spacing:8px;color:#aaa;margin:15px 0 35px}
+
+.subtitle{
+  font:600 clamp(16px,2.5vw,25px) Rajdhani;
+  letter-spacing:8px;
+  color:#aaa;
+  margin:15px 0 35px;
+}
+
 .enter{
-  display:inline-block;padding:14px 32px;border:1px solid #e50914;color:#fff;text-decoration:none;
-  font:700 14px Orbitron;letter-spacing:3px;transition:.25s;background:#0b0b0b;
+  display:inline-block;
+  padding:14px 32px;
+  border:1px solid #e50914;
+  color:#fff;
+  text-decoration:none;
+  font:700 14px Orbitron;
+  letter-spacing:3px;
+  transition:.25s;
+  background:#0b0b0b;
 }
-.enter:hover{background:#e50914;box-shadow:0 0 25px #e50914}
-section{padding:85px 7%;position:relative}
-.section-title{font:800 32px Orbitron;color:#e50914;letter-spacing:3px;margin-bottom:10px}
-.section-line{width:100px;height:3px;background:#e50914;margin-bottom:40px;box-shadow:0 0 12px #e50914}
+
+.enter:hover{
+  background:#e50914;
+  box-shadow:0 0 25px #e50914;
+}
+
+section{
+  padding:85px 7%;
+  position:relative;
+}
+
+.section-title{
+  font:800 32px Orbitron;
+  color:#e50914;
+  letter-spacing:3px;
+  margin-bottom:10px;
+}
+
+.section-line{
+  width:100px;
+  height:3px;
+  background:#e50914;
+  margin-bottom:40px;
+  box-shadow:0 0 12px #e50914;
+}
+
 .intro{
-  max-width:900px;color:#aaa;font-size:19px;line-height:1.6;margin-bottom:45px;
+  max-width:900px;
+  color:#aaa;
+  font-size:19px;
+  line-height:1.6;
+  margin-bottom:45px;
 }
+
 .notice{
-  border-left:4px solid #e50914;background:#100505;padding:22px 25px;margin-bottom:55px;
-  color:#ccc;font-size:16px;
+  border-left:4px solid #e50914;
+  background:#100505;
+  padding:22px 25px;
+  margin-bottom:55px;
+  color:#ccc;
+  font-size:16px;
 }
-.notice strong{color:#ff3030}
+
+.notice strong{
+  color:#ff3030;
+}
+
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
 }
+
 .card{
-  position:relative;background:linear-gradient(145deg,#111,#080808);
-  border:1px solid #2b1515;padding:25px;min-height:180px;
-  transition:.25s;overflow:hidden;
+  position:relative;
+  background:linear-gradient(145deg,#111,#080808);
+  border:1px solid #2b1515;
+  padding:25px;
+  min-height:180px;
+  transition:.25s;
+  overflow:hidden;
 }
-.card:before{content:"DPS";position:absolute;right:-10px;bottom:-25px;font:900 80px Orbitron;color:#e50914;opacity:.035}
-.card:hover{transform:translateY(-6px);border-color:#e50914;box-shadow:0 10px 35px rgba(229,9,20,.16)}
-.num{color:#7b1010;font:700 12px Orbitron;letter-spacing:2px}
-.name{font:800 23px Orbitron;color:#fff;margin:13px 0 8px}
-.role{display:inline-block;color:#ff2020;border:1px solid #5d1111;padding:4px 8px;font:700 11px Orbitron;letter-spacing:1px}
-.bio{color:#888;line-height:1.5;margin-top:15px;font-size:15px}
+
+.card:before{
+  content:"DPS";
+  position:absolute;
+  right:-10px;
+  bottom:-25px;
+  font:900 80px Orbitron;
+  color:#e50914;
+  opacity:.035;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#e50914;
+  box-shadow:0 10px 35px rgba(229,9,20,.16);
+}
+
+.num{
+  color:#7b1010;
+  font:700 12px Orbitron;
+  letter-spacing:2px;
+}
+
+.name{
+  font:800 23px Orbitron;
+  color:#fff;
+  margin:13px 0 8px;
+}
+
+.role{
+  display:inline-block;
+  color:#ff2020;
+  border:1px solid #5d1111;
+  padding:4px 8px;
+  font:700 11px Orbitron;
+  letter-spacing:1px;
+}
+
+.bio{
+  color:#888;
+  line-height:1.5;
+  margin-top:15px;
+  font-size:15px;
+}
+
 footer{
-  border-top:1px solid #281010;text-align:center;padding:45px 20px;color:#555;
-  font:600 12px Orbitron;letter-spacing:2px;
+  border-top:1px solid #281010;
+  text-align:center;
+  padding:45px 20px;
+  color:#555;
+  font:600 12px Orbitron;
+  letter-spacing:2px;
 }
-footer span{color:#e50914}
+
+footer span{
+  color:#e50914;
+}
+
 @media(max-width:600px){
- section{padding:65px 5%}.subtitle{letter-spacing:4px}.card{min-height:160px}
+  section{
+    padding:65px 5%;
+  }
+
+  .subtitle{
+    letter-spacing:4px;
+  }
+
+  .card{
+    min-height:160px;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <div class="noise"></div>
 
 <header>
-  <div class="warning">⚠ For Emergencies / FOR Extreme purposes ONLY ⚠</div>
-  <div class="hero">
-    <div class="kicker">DPS // CLASSIFIED NETWORK</div>
-    <h1>DPS<br>SPECIAL FORCES</h1>
-    <div class="subtitle">Emergencies • LOYALTY • Brotherhood</div>
-    <a class="enter" href="#roster">VIEW MEMBERS ↓</a>
+
+  <div class="warning">
+    ⚠ For Emergencies / FOR Extreme purposes ONLY ⚠
   </div>
+
+  <div class="hero">
+
+    <div class="kicker">
+      DPS // CLASSIFIED NETWORK
+    </div>
+
+    <h1>
+      DPS<br>
+      SPECIAL FORCES
+    </h1>
+
+    <div class="subtitle">
+      Emergencies • LOYALTY • Brotherhood
+    </div>
+
+    <a class="enter" href="#roster">
+      VIEW MEMBERS ↓
+    </a>
+
+  </div>
+
 </header>
 
+
 <section id="roster">
-  <div class="section-title">THE TEAM</div>
+
+  <div class="section-title">
+    THE TEAM
+  </div>
+
   <div class="section-line"></div>
+
   <p class="intro">
     Welcome to the fictional DPS Special Forces headquarters — an over-the-top,
     red-and-black dossier built purely for the squad. Every title here is part of
     the joke and represents the crew's made-up hierarchy.
   </p>
-  <div class="notice"><strong>CLASSIFIED NOTICE:</strong> This is a fictional fan-style website for entertainment. No real criminal organization, threats, or activities are represented here.</div>
+
+  <div class="notice">
+    <strong>CLASSIFIED NOTICE:</strong>
+    This is a fictional fan-style website for entertainment.
+    No real criminal organization, threats, or activities are represented here.
+  </div>
+
 
   <div class="grid">
-    <article class="card"><div class="num">001 // COMMAND</div><div class="name">Shoaib</div><div class="role">FOUNDER</div><p class="bio">The original architect of DPS. The one who started the whole operation and gave the squad its identity.</p></article>
-    <article class="card"><div class="num">002 // ADMIN</div><div class="name">Abdullah Zahoor</div><div class="role">ADMIN</div><p class="bio">Keeps the fictional headquarters organized, the rules straight, and the chaos under control.</p></article>
-    <article class="card"><div class="num">003 // INTERNATIONAL</div><div class="name">Adiyan</div><div class="role">INTERNATIONAL ADMINISTRATOR</div><p class="bio">Handles imaginary international affairs and keeps DPS connected beyond the usual borders.</p></article>
-    <article class="card"><div class="num">004 // MANAGEMENT</div><div class="name">Ali Umar</div><div class="role">GROUP MANAGER</div><p class="bio">The central coordinator of the squad, managing the crew and keeping everyone on the same page.</p></article>
-    <article class="card"><div class="num">005 // UNIT</div><div class="name">Ali Hammad</div><div class="role">SPECIAL FORCE</div><p class="bio">A core fictional unit member trusted with the squad's most dramatic missions.</p></article>
-    <article class="card"><div class="num">006 // UNIT</div><div class="name">Bilal Naeem</div><div class="role">NAIB SADAR</div><p class="bio">Part of the fictional special-force division, bringing energy and loyalty to the roster.</p></article>
-    <article class="card"><div class="num">007 // COUNCIL</div><div class="name">Qalbe Ahmed</div><div class="role">CHAIRMAN</div><p class="bio">The chairman of the fictional council, overseeing the grand strategy and squad traditions.</p></article>
-    <article class="card"><div class="num">008 // OPERATIONS</div><div class="name">Faris Khan</div><div class="role">LEADER</div><p class="bio">The squad's legendary Yakki Master — a completely made-up title reserved for maximum style.</p></article>
-    <article class="card"><div class="num">009 // COUNCIL</div><div class="name">Malik Ahmed</div><div class="role">SADAR</div><p class="bio">A senior fictional figure in the hierarchy, representing authority and squad leadership.</p></article>
-    <article class="card"><div class="num">010 // UNIT</div><div class="name">Hadi Hussain</div><div class="role">SPECIAL FORCE</div><p class="bio">A core member of the fictional special-force unit, always ready for squad-level chaos.</p></article>
-    <article class="card"><div class="num">011 // UNIT</div><div class="name">Hadi Abbas</div><div class="role">SPECIAL FORCE</div><p class="bio">Another member of the elite fictional unit, adding strength to the DPS roster.</p></article>
-    <article class="card"><div class="num">012 // UNIT</div><div class="name">Ali Ammar</div><div class="role">SPECIAL FORCE</div><p class="bio">A fictional field member representing the squad's fast-moving special-force division.</p></article>
-    <article class="card"><div class="num">013 // UNIT</div><div class="name">Ali Haider</div><div class="role">SPECIAL FORCE</div><p class="bio">A member of the fictional special-force crew and part of the DPS inner roster.</p></article>
-    <article class="card"><div class="num">014 // INTERNATIONAL</div><div class="name">Jalal Ud Din</div><div class="role">INTERNATIONAL FORCE MANAGER</div><p class="bio">Coordinates the fictional international force and keeps the imaginary global division running.</p></article>
-    <article class="card"><div class="num">015 // LOGISTICS</div><div class="name">Mohsin Moin</div><div class="role">DOODH SUPPLY</div><p class="bio">The teams milk supplier by the use of his great mummy for the provision of milk service.</p></article>
-    <article class="card"><div class="num">016 // UNIT</div><div class="name">Ali Haider</div><div class="role">SPECIAL FORCE</div><p class="bio">Listed again in the original roster — because apparently one Ali Haider wasn't enough.</p></article>
-    <article class="card"><div class="num">017 // DIGITAL</div><div class="name">Abubakar</div><div class="role">WEBSITE MANAGER</div><p class="bio">Controls the fictional digital headquarters and makes sure the DPS website stays online.</p></article>
-    <article class="card"><div class="num">018 // UNIT</div><div class="name">Muzan Iqbal</div><div class="role">SPECIAL FORCE</div><p class="bio">A member of the fictional special-force division, representing the squad's elite side.</p></article>
-    <article class="card"><div class="num">019 // UNIT</div><div class="name">Abdullah Munir</div><div class="role">SPECIAL FORCE</div><p class="bio">A final member of the fictional unit, completing the current DPS roster.</p></article>
+
+    <!-- 001 -->
     <article class="card">
-      <article class="card">
+      <div class="num">001 // COMMAND</div>
+      <div class="name">Shoaib</div>
+      <div class="role">FOUNDER</div>
+      <p class="bio">
+        The original architect of DPS. The one who started the whole operation
+        and gave the squad its identity.
+      </p>
+    </article>
+
+
+    <!-- 002 -->
+    <article class="card">
+      <div class="num">002 // ADMIN</div>
+      <div class="name">Abdullah Zahoor</div>
+      <div class="role">ADMIN</div>
+      <p class="bio">
+        Keeps the fictional headquarters organized, the rules straight,
+        and the chaos under control.
+      </p>
+    </article>
+
+
+    <!-- 003 -->
+    <article class="card">
+      <div class="num">003 // INTERNATIONAL</div>
+      <div class="name">Adiyan</div>
+      <div class="role">INTERNATIONAL ADMINISTRATOR</div>
+      <p class="bio">
+        Handles imaginary international affairs and keeps DPS connected
+        beyond the usual borders.
+      </p>
+    </article>
+
+
+    <!-- 004 -->
+    <article class="card">
+      <div class="num">004 // MANAGEMENT</div>
+      <div class="name">Ali Umar</div>
+      <div class="role">GROUP MANAGER</div>
+      <p class="bio">
+        The central coordinator of the squad, managing the crew and keeping
+        everyone on the same page.
+      </p>
+    </article>
+
+
+    <!-- 005 -->
+    <article class="card">
+      <div class="num">005 // UNIT</div>
+      <div class="name">Ali Hammad</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A core fictional unit member trusted with the squad's most dramatic missions.
+      </p>
+    </article>
+
+
+    <!-- 006 -->
+    <article class="card">
+      <div class="num">006 // UNIT</div>
+      <div class="name">Bilal Naeem</div>
+      <div class="role">NAIB SADAR</div>
+      <p class="bio">
+        Part of the fictional special-force division, bringing energy and loyalty
+        to the roster.
+      </p>
+    </article>
+
+
+    <!-- 007 -->
+    <article class="card">
+      <div class="num">007 // COUNCIL</div>
+      <div class="name">Qalbe Ahmed</div>
+      <div class="role">CHAIRMAN</div>
+      <p class="bio">
+        The chairman of the fictional council, overseeing the grand strategy
+        and squad traditions.
+      </p>
+    </article>
+
+
+    <!-- 008 -->
+    <article class="card">
+      <div class="num">008 // OPERATIONS</div>
+      <div class="name">Faris Khan</div>
+      <div class="role">LEADER</div>
+      <p class="bio">
+        The squad's legendary Yakki Master — a completely made-up title
+        reserved for maximum style.
+      </p>
+    </article>
+
+
+    <!-- 009 -->
+    <article class="card">
+      <div class="num">009 // COUNCIL</div>
+      <div class="name">Malik Ahmed</div>
+      <div class="role">SADAR</div>
+      <p class="bio">
+        A senior fictional figure in the hierarchy, representing authority
+        and squad leadership.
+      </p>
+    </article>
+
+
+    <!-- 010 -->
+    <article class="card">
+      <div class="num">010 // UNIT</div>
+      <div class="name">Hadi Hussain</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A core member of the fictional special-force unit, always ready
+        for squad-level chaos.
+      </p>
+    </article>
+
+
+    <!-- 011 -->
+    <article class="card">
+      <div class="num">011 // UNIT</div>
+      <div class="name">Hadi Abbas</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        Another member of the elite fictional unit, adding strength to
+        the DPS roster.
+      </p>
+    </article>
+
+
+    <!-- 012 -->
+    <article class="card">
+      <div class="num">012 // UNIT</div>
+      <div class="name">Ali Ammar</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A fictional field member representing the squad's fast-moving
+        special-force division.
+      </p>
+    </article>
+
+
+    <!-- 013 -->
+    <article class="card">
+      <div class="num">013 // UNIT</div>
+      <div class="name">Ali Haider</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A member of the fictional special-force crew and part of the
+        DPS inner roster.
+      </p>
+    </article>
+
+
+    <!-- 014 -->
+    <article class="card">
+      <div class="num">014 // INTERNATIONAL</div>
+      <div class="name">Jalal Ud Din</div>
+      <div class="role">INTERNATIONAL FORCE MANAGER</div>
+      <p class="bio">
+        Coordinates the fictional international force and keeps the
+        imaginary global division running.
+      </p>
+    </article>
+
+
+    <!-- 015 -->
+    <article class="card">
+      <div class="num">015 // LOGISTICS</div>
+      <div class="name">Mohsin Moin</div>
+      <div class="role">DOODH SUPPLY</div>
+      <p class="bio">
+        The team's milk supplier by the use of his great mummy for the
+        provision of milk service.
+      </p>
+    </article>
+
+
+    <!-- 016 -->
+    <article class="card">
+      <div class="num">016 // UNIT</div>
+      <div class="name">Ali Haider</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        Listed again in the original roster — because apparently one
+        Ali Haider wasn't enough.
+      </p>
+    </article>
+
+
+    <!-- 017 -->
+    <article class="card">
+      <div class="num">017 // DIGITAL</div>
+      <div class="name">Abubakar</div>
+      <div class="role">WEBSITE MANAGER</div>
+      <p class="bio">
+        Controls the fictional digital headquarters and makes sure
+        the DPS website stays online.
+      </p>
+    </article>
+
+
+    <!-- 018 -->
+    <article class="card">
+      <div class="num">018 // UNIT</div>
+      <div class="name">Muzan Iqbal</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A member of the fictional special-force division, representing
+        the squad's elite side.
+      </p>
+    </article>
+
+
+    <!-- 019 -->
+    <article class="card">
+      <div class="num">019 // UNIT</div>
+      <div class="name">Abdullah Munir</div>
+      <div class="role">SPECIAL FORCE</div>
+      <p class="bio">
+        A final member of the fictional unit, completing the current DPS roster.
+      </p>
+    </article>
+
+
+    <!-- 020 -->
+    <article class="card">
       <div class="num">020 // UNIT</div>
       <div class="name">SUBTAIN</div>
       <div class="role">HEAD GENERAL</div>
-      <p class="bio">One of the greatest members with connections for handling important issues.</p>
+      <p class="bio">
+        One of the greatest members with connections for handling important issues.
+      </p>
     </article>
 
+
+    <!-- 021 -->
     <article class="card">
       <div class="num">021 // UNIT</div>
       <div class="name">RANA</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">Part of the special forces and added in group.</p>
+      <p class="bio">
+        Part of the special forces and added in group.
+      </p>
     </article>
 
+
+    <!-- 022 -->
     <article class="card">
       <div class="num">022 // UNIT</div>
       <div class="name">Hadi 804</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">
+        A member of the group.
+      </p>
     </article>
 
+
+    <!-- 023 -->
     <article class="card">
       <div class="num">023 // UNIT</div>
       <div class="name">Rayyan Mahmood</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A great member of the force.</p>
+      <p class="bio">
+        A great member of the force.
+      </p>
     </article>
 
+
+    <!-- 024 -->
     <article class="card">
       <div class="num">024 // UNIT</div>
       <div class="name">Ahmer Farooq</div>
       <div class="role">CLASS MEMBER</div>
-      <p class="bio">Code master and computer expert.</p>
+      <p class="bio">
+        Code master and computer expert.
+      </p>
     </article>
 
+
+    <!-- 025 -->
     <article class="card">
       <div class="num">025 // UNIT</div>
       <div class="name">Moiz Shah</div>
       <div class="role">CLOSE MEMBER</div>
-      <p class="bio">One of the best members of the force.</p>
+      <p class="bio">
+        One of the best members of the force.
+      </p>
     </article>
 
+
+    <!-- 026 -->
     <article class="card">
       <div class="num">026 // UNIT</div>
       <div class="name">Hussan Gujjar</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">
+        A member of the group.
+      </p>
     </article>
 
+
+    <!-- 027 -->
     <article class="card">
       <div class="num">027 // UNIT</div>
       <div class="name">Ibrahim</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">
+        A member of the group.
+      </p>
     </article>
 
   </div>
+
 </section>
 
+
 <footer>
-  DPS SPECIAL FORCES <span>//</span> FICTIONAL SQUAD HQ <span>//</span> FOR FUN ONLY
+  DPS SPECIAL FORCES
+  <span>//</span>
+  FICTIONAL SQUAD HQ
+  <span>//</span>
+  FOR FUN ONLY
 </footer>
+
 </body>
 </html>
+```
+
+**This one is ready to replace the entire old file.** Every member from **001 through 027 is now a separate `<article class="card">`**, with no nested cards or missing closing tags.
+
+If you paste this over the whole existing HTML file, the grid should line up normally.
