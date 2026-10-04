@@ -180,6 +180,45 @@ section{
   color:#ff3030;
 }
 
+/* Labelled section buttons */
+.label-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:50px;
+}
+
+.label-btn{
+  display:inline-block;
+  padding:12px 28px;
+  border:1px solid #e50914;
+  color:#fff;
+  text-decoration:none;
+  font:700 13px Orbitron;
+  letter-spacing:2px;
+  transition:.25s;
+  background:#0b0b0b;
+  cursor:pointer;
+}
+
+.label-btn:hover{
+  background:#e50914;
+  box-shadow:0 0 20px rgba(229,9,20,.4);
+}
+
+.sub-section-title{
+  font:700 22px Orbitron;
+  color:#ff3030;
+  letter-spacing:2px;
+  margin:50px 0 20px;
+  padding-bottom:10px;
+  border-bottom:1px solid #2b1515;
+}
+
+.sub-section-title:first-of-type{
+  margin-top:0;
+}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -265,6 +304,10 @@ footer span{
   .card{
     min-height:160px;
   }
+
+  .label-buttons{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -323,36 +366,94 @@ footer span{
     No real criminal organization, threats, or activities are represented here.
   </div>
 
+  <!-- LABELLED BUTTONS -->
+  <div class="label-buttons">
+    <a class="label-btn" href="#founder">FOUNDER</a>
+    <a class="label-btn" href="#close-members">CLOSE MEMBERS</a>
+    <a class="label-btn" href="#sadars-members">SADARS / MEMBERS</a>
+  </div>
 
+
+  <!-- ========== FOUNDER ========== -->
+  <div class="sub-section-title" id="founder">FOUNDER</div>
   <div class="grid">
 
-    <!-- 001 -->
     <article class="card">
-      <div class="num">001 // COMMAND</div>
-      <div class="name">Shoaib</div>
+      <div class="num">001 // FOUNDER</div>
+      <div class="name">Abdullah Zahoor</div>
       <div class="role">FOUNDER</div>
+      <p class="bio">
+        The founder of DPS Special Forces. The visionary who built the squad
+        from the ground up and gave it its identity.
+      </p>
+    </article>
+
+  </div>
+
+
+  <!-- ========== CLOSE MEMBERS ========== -->
+  <div class="sub-section-title" id="close-members">CLOSE MEMBERS</div>
+  <div class="grid">
+
+    <article class="card">
+      <div class="num">002 // CLOSE MEMBER</div>
+      <div class="name">Ahmed Malik</div>
+      <div class="role">CLOSE MEMBER</div>
+      <p class="bio">
+        A senior fictional figure in the hierarchy, representing authority
+        and squad leadership.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="num">003 // CLOSE MEMBER</div>
+      <div class="name">Shoaib</div>
+      <div class="role">CLOSE MEMBER</div>
       <p class="bio">
         The original architect of DPS. The one who started the whole operation
         and gave the squad its identity.
       </p>
     </article>
 
-
-    <!-- 002 -->
     <article class="card">
-      <div class="num">002 // ADMIN</div>
-      <div class="name">Abdullah Zahoor</div>
-      <div class="role">ADMIN</div>
+      <div class="num">004 // CLOSE MEMBER</div>
+      <div class="name">Qalb E Ahmed</div>
+      <div class="role">CLOSE MEMBER</div>
       <p class="bio">
-        Keeps the fictional headquarters organized, the rules straight,
-        and the chaos under control.
+        The chairman of the fictional council, overseeing the grand strategy
+        and squad traditions.
       </p>
     </article>
 
-
-    <!-- 003 -->
     <article class="card">
-      <div class="num">003 // INTERNATIONAL</div>
+      <div class="num">005 // CLOSE MEMBER</div>
+      <div class="name">Ali Umar</div>
+      <div class="role">CLOSE MEMBER</div>
+      <p class="bio">
+        The central coordinator of the squad, managing the crew and keeping
+        everyone on the same page.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="num">006 // CLOSE MEMBER</div>
+      <div class="name">Bilal Naeem</div>
+      <div class="role">CLOSE MEMBER</div>
+      <p class="bio">
+        Part of the fictional special-force division, bringing energy and loyalty
+        to the roster.
+      </p>
+    </article>
+
+  </div>
+
+
+  <!-- ========== SADARS / MEMBERS ========== -->
+  <div class="sub-section-title" id="sadars-members">SADARS / MEMBERS</div>
+  <div class="grid">
+
+    <article class="card">
+      <div class="num">007 // INTERNATIONAL</div>
       <div class="name">Adiyan</div>
       <div class="role">INTERNATIONAL ADMINISTRATOR</div>
       <p class="bio">
@@ -361,22 +462,8 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 004 -->
     <article class="card">
-      <div class="num">004 // MANAGEMENT</div>
-      <div class="name">Ali Umar</div>
-      <div class="role">GROUP MANAGER</div>
-      <p class="bio">
-        The central coordinator of the squad, managing the crew and keeping
-        everyone on the same page.
-      </p>
-    </article>
-
-
-    <!-- 005 -->
-    <article class="card">
-      <div class="num">005 // UNIT</div>
+      <div class="num">008 // UNIT</div>
       <div class="name">Ali Hammad</div>
       <div class="role">SPECIAL FORCE</div>
       <p class="bio">
@@ -384,34 +471,8 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 006 -->
     <article class="card">
-      <div class="num">006 // UNIT</div>
-      <div class="name">Bilal Naeem</div>
-      <div class="role">NAIB SADAR</div>
-      <p class="bio">
-        Part of the fictional special-force division, bringing energy and loyalty
-        to the roster.
-      </p>
-    </article>
-
-
-    <!-- 007 -->
-    <article class="card">
-      <div class="num">007 // COUNCIL</div>
-      <div class="name">Qalbe Ahmed</div>
-      <div class="role">CHAIRMAN</div>
-      <p class="bio">
-        The chairman of the fictional council, overseeing the grand strategy
-        and squad traditions.
-      </p>
-    </article>
-
-
-    <!-- 008 -->
-    <article class="card">
-      <div class="num">008 // OPERATIONS</div>
+      <div class="num">009 // OPERATIONS</div>
       <div class="name">Faris Khan</div>
       <div class="role">LEADER</div>
       <p class="bio">
@@ -420,20 +481,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 009 -->
-    <article class="card">
-      <div class="num">009 // COUNCIL</div>
-      <div class="name">Malik Ahmed</div>
-      <div class="role">SADAR</div>
-      <p class="bio">
-        A senior fictional figure in the hierarchy, representing authority
-        and squad leadership.
-      </p>
-    </article>
-
-
-    <!-- 010 -->
     <article class="card">
       <div class="num">010 // UNIT</div>
       <div class="name">Hadi Hussain</div>
@@ -444,8 +491,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 011 -->
     <article class="card">
       <div class="num">011 // UNIT</div>
       <div class="name">Hadi Abbas</div>
@@ -456,8 +501,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 012 -->
     <article class="card">
       <div class="num">012 // UNIT</div>
       <div class="name">Ali Ammar</div>
@@ -468,8 +511,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 013 -->
     <article class="card">
       <div class="num">013 // UNIT</div>
       <div class="name">Ali Haider</div>
@@ -480,8 +521,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 014 -->
     <article class="card">
       <div class="num">014 // INTERNATIONAL</div>
       <div class="name">Jalal Ud Din</div>
@@ -492,8 +531,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 015 -->
     <article class="card">
       <div class="num">015 // LOGISTICS</div>
       <div class="name">Mohsin Moin</div>
@@ -504,8 +541,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 016 -->
     <article class="card">
       <div class="num">016 // UNIT</div>
       <div class="name">Ali Haider</div>
@@ -516,8 +551,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 017 -->
     <article class="card">
       <div class="num">017 // DIGITAL</div>
       <div class="name">Abubakar</div>
@@ -528,8 +561,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 018 -->
     <article class="card">
       <div class="num">018 // UNIT</div>
       <div class="name">Muzan Iqbal</div>
@@ -540,8 +571,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 019 -->
     <article class="card">
       <div class="num">019 // UNIT</div>
       <div class="name">Abdullah Munir</div>
@@ -551,8 +580,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 020 -->
     <article class="card">
       <div class="num">020 // UNIT</div>
       <div class="name">SUBTAIN</div>
@@ -562,8 +589,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 021 -->
     <article class="card">
       <div class="num">021 // UNIT</div>
       <div class="name">RANA</div>
@@ -573,8 +598,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 022 -->
     <article class="card">
       <div class="num">022 // UNIT</div>
       <div class="name">Hadi 804</div>
@@ -584,8 +607,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 023 -->
     <article class="card">
       <div class="num">023 // UNIT</div>
       <div class="name">Rayyan Mahmood</div>
@@ -595,8 +616,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 024 -->
     <article class="card">
       <div class="num">024 // UNIT</div>
       <div class="name">Ahmer Farooq</div>
@@ -606,8 +625,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 025 -->
     <article class="card">
       <div class="num">025 // UNIT</div>
       <div class="name">Moiz Shah</div>
@@ -617,8 +634,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 026 -->
     <article class="card">
       <div class="num">026 // UNIT</div>
       <div class="name">Hussan Gujjar</div>
@@ -628,8 +643,6 @@ footer span{
       </p>
     </article>
 
-
-    <!-- 027 -->
     <article class="card">
       <div class="num">027 // UNIT</div>
       <div class="name">Ibrahim</div>
@@ -639,7 +652,6 @@ footer span{
       </p>
     </article>
 
-    <!-- 028 -->
     <article class="card">
       <div class="num">028 // UNIT</div>
       <div class="name">Zaryan</div>
@@ -647,7 +659,6 @@ footer span{
       <p class="bio">A newly added member of the fictional DPS roster, bringing fresh energy to the squad.</p>
     </article>
 
-    <!-- 029 -->
     <article class="card">
       <div class="num">029 // UNIT</div>
       <div class="name">Ahmed._.why</div>
@@ -655,7 +666,6 @@ footer span{
       <p class="bio">A new member of the fictional force, officially added to the DPS network.</p>
     </article>
 
-    <!-- 030 -->
     <article class="card">
       <div class="num">030 // CYBER UNIT</div>
       <div class="name">Cyb3r</div>
@@ -663,7 +673,6 @@ footer span{
       <p class="bio">The digital-side addition to the fictional squad, bringing a cyber-themed identity to DPS.</p>
     </article>
 
-    <!-- 031 -->
     <article class="card">
       <div class="num">031 // UNIT</div>
       <div class="name">Umais Irfan</div>
@@ -671,7 +680,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 032 -->
     <article class="card">
       <div class="num">032 // UNIT</div>
       <div class="name">Arman Khokhar</div>
@@ -679,7 +687,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 033 -->
     <article class="card">
       <div class="num">033 // UNIT</div>
       <div class="name">A_h_m_a_d 354</div>
@@ -687,7 +694,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 034 -->
     <article class="card">
       <div class="num">034 // UNIT</div>
       <div class="name">Abdullah Azeem</div>
@@ -695,7 +701,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 035 -->
     <article class="card">
       <div class="num">035 // UNIT</div>
       <div class="name">Adnan Jutt</div>
@@ -703,7 +708,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 036 -->
     <article class="card">
       <div class="num">036 // UNIT</div>
       <div class="name">Sheikh Moied</div>
@@ -711,7 +715,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 037 -->
     <article class="card">
       <div class="num">037 // UNIT</div>
       <div class="name">Faisal Joiya</div>
@@ -719,7 +722,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 038 -->
     <article class="card">
       <div class="num">038 // UNIT</div>
       <div class="name">Rayan Rashid</div>
@@ -727,7 +729,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 039 -->
     <article class="card">
       <div class="num">039 // UNIT</div>
       <div class="name">Abdu.llah_507</div>
@@ -735,7 +736,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 040 -->
     <article class="card">
       <div class="num">040 // UNIT</div>
       <div class="name">yahya_dgaf026</div>
@@ -743,7 +743,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 041 -->
     <article class="card">
       <div class="num">041 // UNIT</div>
       <div class="name">Chaudry_ayy1n222</div>
@@ -751,7 +750,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 042 -->
     <article class="card">
       <div class="num">042 // UNIT</div>
       <div class="name">ubaid_.s1</div>
@@ -759,7 +757,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 043 -->
     <article class="card">
       <div class="num">043 // UNIT</div>
       <div class="name">Itx Saadi</div>
@@ -767,7 +764,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 044 -->
     <article class="card">
       <div class="num">044 // UNIT</div>
       <div class="name">Sardar Tayyab Dogar</div>
@@ -775,7 +771,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 045 -->
     <article class="card">
       <div class="num">045 // UNIT</div>
       <div class="name">faranbutt_12</div>
@@ -783,7 +778,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 046 -->
     <article class="card">
       <div class="num">046 // UNIT</div>
       <div class="name">Faiz.sajid16</div>
@@ -791,7 +785,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 047 -->
     <article class="card">
       <div class="num">047 // UNIT</div>
       <div class="name">M.ali_bhatti56</div>
@@ -799,7 +792,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 048 -->
     <article class="card">
       <div class="num">048 // UNIT</div>
       <div class="name">_abubakar.imrar</div>
@@ -807,7 +799,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 049 -->
     <article class="card">
       <div class="num">049 // UNIT</div>
       <div class="name">Daniyal Malik</div>
@@ -815,7 +806,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 050 -->
     <article class="card">
       <div class="num">050 // UNIT</div>
       <div class="name">m..wasif..t</div>
@@ -823,7 +813,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 051 -->
     <article class="card">
       <div class="num">051 // UNIT</div>
       <div class="name">mainadiyan</div>
@@ -831,7 +820,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 052 -->
     <article class="card">
       <div class="num">052 // UNIT</div>
       <div class="name">hamza (hamzxkz)</div>
@@ -839,7 +827,6 @@ footer span{
       <p class="bio">A member of the group.</p>
     </article>
 
-    <!-- 053 -->
     <article class="card">
       <div class="num">053 // UNIT</div>
       <div class="name">ali_ammar012</div>
