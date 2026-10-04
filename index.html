@@ -3,330 +3,578 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSF STUDENT FORCE</title>
+<title>SSF SPECIAL FORCES // CLASSIFIED DATABASE</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root {
+  --red: #e50914;
+  --dark-red: #8b0000;
+  --deep-red: #350000;
+  --black: #050505;
+  --card-bg: #0d0d0d;
+  --border-color: #2b1515;
+  --text-primary: #eee;
+  --text-muted: #888;
 }
 
-html{
-  scroll-behavior:smooth;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  background:#050505;
-  color:#eee;
-  font-family:'Rajdhani',sans-serif;
-  overflow-x:hidden;
+html {
+  scroll-behavior: smooth;
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.07;
+body {
+  background: var(--black);
+  color: var(--text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background Grid Effect */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .07;
   background-image:
-    linear-gradient(rgba(255,0,0,.25) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,0,0,.25) 1px,transparent 1px);
-  background-size:40px 40px;
-  z-index:10;
+    linear-gradient(rgba(255, 0, 0, .25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, .25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 10;
 }
 
-.noise{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9;
-  opacity:.025;
-  background:repeating-linear-gradient(
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: .03;
+  background: repeating-linear-gradient(
     0deg,
     #fff 0 1px,
     transparent 1px 3px
   );
 }
 
-header{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  background:radial-gradient(
-    circle at center,
-    #350000 0%,
-    #100000 27%,
-    #050505 68%
-  );
+/* --- CLASSIFIED LANDING / GATEWAY --- */
+#landing-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: radial-gradient(circle at center, #1a0000 0%, #050505 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-header:after{
-  content:"";
-  position:absolute;
-  width:650px;
-  height:650px;
-  border:1px solid #550000;
-  border-radius:50%;
-  box-shadow:
-    0 0 0 80px rgba(130,0,0,.08),
-    0 0 0 160px rgba(130,0,0,.05);
+#landing-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.warning{
-  position:absolute;
-  top:28px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#ff2020;
-  border:1px solid #8b0000;
-  padding:8px 18px;
-  letter-spacing:4px;
-  font:700 12px Orbitron;
-  z-index:2;
-  background:#090909cc;
-}
-
-.hero{
-  position:relative;
-  z-index:3;
-  padding:30px;
-}
-
-.kicker{
-  color:#b00000;
-  font:700 14px Orbitron;
-  letter-spacing:8px;
-  margin-bottom:20px;
-}
-
-h1{
-  font:900 clamp(48px,10vw,115px) Orbitron;
-  letter-spacing:5px;
-  color:#e50914;
-  text-shadow:
-    0 0 12px #e50914,
-    5px 5px 0 #240000;
-}
-
-.subtitle{
-  font:600 clamp(16px,2.5vw,25px) Rajdhani;
-  letter-spacing:8px;
-  color:#aaa;
-  margin:15px 0 35px;
-}
-
-.enter{
-  display:inline-block;
-  padding:14px 32px;
-  border:1px solid #e50914;
-  color:#fff;
-  text-decoration:none;
-  font:700 14px Orbitron;
-  letter-spacing:3px;
-  transition:.25s;
-  background:#0b0b0b;
-}
-
-.enter:hover{
-  background:#e50914;
-  box-shadow:0 0 25px #e50914;
-}
-
-section{
-  padding:85px 7%;
-  position:relative;
-}
-
-.section-title{
-  font:800 32px Orbitron;
-  color:#e50914;
-  letter-spacing:3px;
-  margin-bottom:10px;
-}
-
-.section-line{
-  width:100px;
-  height:3px;
-  background:#e50914;
-  margin-bottom:40px;
-  box-shadow:0 0 12px #e50914;
-}
-
-.intro{
-  max-width:900px;
-  color:#aaa;
-  font-size:19px;
-  line-height:1.6;
-  margin-bottom:45px;
-}
-
-.notice{
-  border-left:4px solid #e50914;
-  background:#100505;
-  padding:22px 25px;
-  margin-bottom:55px;
-  color:#ccc;
-  font-size:16px;
-}
-
-.notice strong{
-  color:#ff3030;
-}
-
-/* Labelled section buttons */
-.label-buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-bottom:50px;
-}
-
-.label-btn{
-  display:inline-block;
-  padding:12px 28px;
-  border:1px solid #e50914;
-  color:#fff;
-  text-decoration:none;
-  font:700 13px Orbitron;
-  letter-spacing:2px;
-  transition:.25s;
-  background:#0b0b0b;
-  cursor:pointer;
-}
-
-.label-btn:hover{
-  background:#e50914;
-  box-shadow:0 0 20px rgba(229,9,20,.4);
-}
-
-.sub-section-title{
-  font:700 22px Orbitron;
-  color:#ff3030;
-  letter-spacing:2px;
-  margin:50px 0 20px;
-  padding-bottom:10px;
-  border-bottom:1px solid #2b1515;
-}
-
-.sub-section-title:first-of-type{
-  margin-top:0;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;
-}
-
-.card{
-  position:relative;
-  background:linear-gradient(145deg,#111,#080808);
-  border:1px solid #2b1515;
-  padding:25px;
-  min-height:180px;
-  transition:.25s;
-  overflow:hidden;
-}
-
-.card:before{
-  content:"DPS";
-  position:absolute;
-  right:-10px;
-  bottom:-25px;
-  font:900 80px Orbitron;
-  color:#e50914;
-  opacity:.035;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#e50914;
-  box-shadow:0 10px 35px rgba(229,9,20,.16);
-}
-
-/* New CSS to format the member profile images safely */
-.card-img {
-  margin: 12px 0;
+.terminal-box {
+  border: 1px solid var(--red);
+  background: rgba(10, 2, 2, 0.85);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
+  padding: 40px 30px;
+  max-width: 550px;
   width: 100%;
+  position: relative;
+}
+
+.terminal-box::before {
+  content: "TERMINAL // AUTH_REQ";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: var(--red);
+  color: #000;
+  font: 800 10px 'Orbitron';
+  padding: 2px 8px;
+}
+
+.gate-title {
+  font: 900 28px 'Orbitron';
+  color: var(--red);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+.gate-status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.gate-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: #fff;
+  font: 800 14px 'Orbitron';
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+}
+
+.gate-btn:hover {
+  background: #ff1e27;
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.8);
+  transform: translateY(-2px);
+}
+
+/* --- FIXED NAVIGATION --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(5, 5, 5, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+}
+
+.nav-brand {
+  font: 800 16px 'Orbitron';
+  color: var(--red);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #aaa;
+  text-decoration: none;
+  font: 700 12px 'Orbitron';
+  letter-spacing: 2px;
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--red);
+}
+
+/* --- SYSTEM STATUS DASHBOARD --- */
+.system-status-bar {
+  background: rgba(15, 5, 5, 0.8);
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px 5%;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #888;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff66;
+  box-shadow: 0 0 8px #00ff66;
+}
+
+/* --- HEADER / HERO SECTION --- */
+header {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at center, var(--deep-red) 0%, #100000 35%, var(--black) 75%);
+  padding: 40px 20px;
+}
+
+.warning-banner {
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff3333;
+  border: 1px solid var(--dark-red);
+  padding: 6px 16px;
+  letter-spacing: 3px;
+  font: 700 11px 'Orbitron';
+  background: rgba(9, 9, 9, 0.85);
+  white-space: nowrap;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  margin-top: 40px;
+}
+
+.kicker {
+  color: var(--red);
+  font: 700 13px 'Orbitron';
+  letter-spacing: 6px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font: 900 clamp(42px, 8vw, 90px) 'Orbitron';
+  letter-spacing: 4px;
+  color: var(--red);
+  text-shadow: 0 0 20px rgba(229, 9, 20, 0.6), 4px 4px 0 #1a0000;
+  line-height: 1.05;
+}
+
+.subtitle {
+  font: 600 clamp(15px, 2vw, 22px) 'Rajdhani';
+  letter-spacing: 6px;
+  color: #bbb;
+  margin: 15px 0 30px;
+}
+
+.enter-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid var(--red);
+  color: #fff;
+  text-decoration: none;
+  font: 700 13px 'Orbitron';
+  letter-spacing: 2px;
+  transition: 0.25s ease;
+  background: #0b0b0b;
+}
+
+.enter-btn:hover {
+  background: var(--red);
+  box-shadow: 0 0 20px var(--red);
+}
+
+/* --- MAIN CONTENT & SECTIONS --- */
+section {
+  padding: 60px 6%;
+  position: relative;
+}
+
+.section-title {
+  font: 800 28px 'Orbitron';
+  color: var(--red);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.section-line {
+  width: 80px;
+  height: 3px;
+  background: var(--red);
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px var(--red);
+}
+
+.notice-box {
+  border-left: 4px solid var(--red);
+  background: #120505;
+  padding: 18px 22px;
+  margin-bottom: 40px;
+  color: #ccc;
+  font-size: 15px;
+}
+
+.notice-box strong {
+  color: #ff3030;
+}
+
+/* --- SEARCH & FILTER BAR --- */
+.controls-container {
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 18px;
+  background: #000;
+  border: 1px solid #441515;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border-color);
+  background: #080808;
+  color: #aaa;
+  font: 700 11px 'Orbitron';
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
+}
+
+/* --- FOUNDER HIGHLIGHT CARD --- */
+.founder-wrapper {
+  margin-bottom: 50px;
+}
+
+.founder-card {
+  background: linear-gradient(135deg, #180000 0%, #0a0a0a 100%);
+  border: 2px solid var(--red);
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.25);
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-card::before {
+  content: "COMMAND_01";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font: 800 12px 'Share Tech Mono';
+  color: var(--red);
+  opacity: 0.6;
+}
+
+.founder-title {
+  font: 900 14px 'Orbitron';
+  color: var(--red);
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+.founder-name {
+  font: 900 36px 'Orbitron';
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.founder-bio {
+  color: #bbb;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+/* --- PERSONNEL GRID & CARDS --- */
+.sub-section-title {
+  font: 700 20px 'Orbitron';
+  color: #ff3030;
+  letter-spacing: 2px;
+  margin: 40px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.2);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.num {
+  color: #7b1010;
+  font: 700 11px 'Orbitron';
+  letter-spacing: 1px;
+}
+
+.clearance-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: #666;
+}
+
+.card-img {
+  margin: 10px 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .card-img img {
-  width: 100%;
-  max-width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   border: 1px solid #3a1515;
-  transition: .25s;
+  filter: grayscale(20%);
+  transition: filter 0.25s ease, border-color 0.25s ease;
 }
 
 .card:hover .card-img img {
-  border-color: #e50914;
-  box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+  filter: grayscale(0%);
+  border-color: var(--red);
 }
 
-.num{
-  color:#7b1010;
-  font:700 12px Orbitron;
-  letter-spacing:2px;
+.name {
+  font: 800 20px 'Orbitron';
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-.name{
-  font:800 23px Orbitron;
-  color:#fff;
-  margin:13px 0 8px;
+.role {
+  display: inline-block;
+  align-self: flex-start;
+  color: #ff3030;
+  border: 1px solid #5d1111;
+  background: rgba(229, 9, 20, 0.05);
+  padding: 4px 8px;
+  font: 700 10px 'Orbitron';
+  letter-spacing: 1px;
+  margin-bottom: 12px;
 }
 
-.role{
-  display:inline-block;
-  color:#ff2020;
-  border:1px solid #5d1111;
-  padding:4px 8px;
-  font:700 11px Orbitron;
-  letter-spacing:1px;
+.bio {
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 14px;
 }
 
-.bio{
-  color:#888;
-  line-height:1.5;
-  margin-top:15px;
-  font-size:15px;
+/* --- ABOUT SECTION --- */
+.about-section {
+  background: #080303;
+  border-top: 1px solid var(--border-color);
 }
 
-footer{
-  border-top:1px solid #281010;
-  text-align:center;
-  padding:45px 20px;
-  color:#555;
-  font:600 12px Orbitron;
-  letter-spacing:2px;
+.about-content {
+  max-width: 800px;
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-footer span{
-  color:#e50914;
+/* --- FOOTER --- */
+footer {
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 35px 20px;
+  color: #666;
+  font: 600 11px 'Orbitron';
+  letter-spacing: 2px;
+  background: #030303;
 }
 
-@media(max-width:600px){
-  section{
-    padding:65px 5%;
+footer span {
+  color: var(--red);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
   }
 
-  .subtitle{
-    letter-spacing:4px;
+  .nav-links {
+    gap: 12px;
+    font-size: 10px;
   }
 
-  .card{
-    min-height:160px;
+  .system-status-bar {
+    margin-top: 80px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
   }
 
-  .label-buttons{
-    flex-direction:column;
+  .warning-banner {
+    top: 135px;
+    font-size: 9px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-card {
+    padding: 20px;
+  }
+
+  .founder-name {
+    font-size: 26px;
   }
 }
 </style>
@@ -334,541 +582,543 @@ footer span{
 
 <body>
 
-<div class="noise"></div>
+<div class="scanline-overlay"></div>
 
-<header>
+<!-- CLASSIFIED ENTRY SCREEN OVERLAY -->
+<div id="landing-screen">
+  <div class="terminal-box">
+    <div class="gate-title">SSF DATABASE</div>
+    <div class="gate-status">
+      RESTRICTED ACCESS // LEVEL-3 CLEARANCE REQUIRED<br>
+      SYSTEM ENCRYPTION: ACTIVE<br>
+      STATUS: ONLINE
+    </div>
+    <button class="gate-btn" onclick="enterSystem()">INITIALIZE SYSTEM</button>
+  </div>
+</div>
 
-  <div class="warning">
-    ⚠ For Emergencies / FOR Extreme purposes ONLY ⚠
+<!-- FIXED NAVIGATION -->
+<nav>
+  <div class="nav-brand">
+    <span>●</span> SSF COMMAND
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">HOME</a></li>
+    <li><a href="#founder-section">COMMAND</a></li>
+    <li><a href="#roster">PERSONNEL</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+</nav>
+
+<!-- SYSTEM STATUS DASHBOARD -->
+<div class="system-status-bar">
+  <div class="status-item">
+    <span class="indicator-dot"></span>
+    <span>SYSTEM STATUS: ONLINE</span>
+  </div>
+  <div class="status-item">
+    <span>DATABASE: ACTIVE</span>
+  </div>
+  <div class="status-item">
+    <span>TOTAL PERSONNEL: 053</span>
+  </div>
+  <div class="status-item">
+    <span>CLEARANCE: AUTHORIZED</span>
+  </div>
+</div>
+
+<!-- HERO HEADER -->
+<header id="hero">
+  <div class="warning-banner">
+    ⚠ FOR EMERGENCIES / OFFICIAL NETWORK PURPOSES ONLY ⚠
   </div>
 
-  <div class="hero">
-
-    <div class="kicker">
-      SSF  // CLASSIFIED NETWORK
-    </div>
-
-    <h1>
-      SSF<br>
-      SPECIAL FORCES
-    </h1>
-
-    <div class="subtitle">
-      Emergencies • LOYALTY • Brotherhood
-    </div>
-
-    <a class="enter" href="#roster">
-      VIEW MEMBERS ↓
-    </a>
-
+  <div class="hero-content">
+    <div class="kicker">SSF // CLASSIFIED NETWORK</div>
+    <h1>SSF<br>SPECIAL FORCES</h1>
+    <div class="subtitle">EMERGENCIES • LOYALTY • BROTHERHOOD</div>
+    <a class="enter-btn" href="#roster">ACCESS PERSONNEL FILE ↓</a>
   </div>
-
 </header>
 
-
+<!-- MAIN ROSTER & DATABASE SECTION -->
 <section id="roster">
-
-  <div class="section-title">
-    THE TEAM
-  </div>
-
+  <div class="section-title">PERSONNEL DATABASE</div>
   <div class="section-line"></div>
 
-  <p class="intro">
-    Welcome to the great SSF Special Forces headquarters — an over-the-top,
-    red-and-black dossier built purely for the squad. 
-  </p>
-
-  <div class="notice">
-    <strong>CLASSIFIED NOTICE:</strong>
-    THIS IS A SERIOUS EMERGENCY BASE GROUP 
-    No real criminal organization, threats, or activities are represented here.
+  <div class="notice-box">
+    <strong>CLASSIFIED NOTICE:</strong> This network contains official personnel files for the SSF Special Forces group. All records are indexed for rapid identification and role delegation.
   </div>
 
-  <!-- LABELLED BUTTONS -->
-  <div class="label-buttons">
-    <a class="label-btn" href="#founder">FOUNDER</a>
-    <a class="label-btn" href="#close-members">CLOSE MEMBERS</a>
-    <a class="label-btn" href="#sadars-members">SADARS / MEMBERS</a>
+  <!-- SEARCH & FILTER CONTROLS -->
+  <div class="controls-container">
+    <div class="search-box">
+      <input type="text" id="searchInput" onkeyup="filterRoster()" placeholder="SEARCH PERSONNEL BY NAME, ROLE, OR ID...">
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" onclick="setCategoryFilter('ALL', this)">ALL UNITS</button>
+      <button class="filter-btn" onclick="setCategoryFilter('COMMAND', this)">COMMAND</button>
+      <button class="filter-btn" onclick="setCategoryFilter('SADAR', this)">SADARS</button>
+      <button class="filter-btn" onclick="setCategoryFilter('MEMBER', this)">MEMBERS</button>
+    </div>
   </div>
 
-
-  <!-- ========== FOUNDER ========== -->
-  <div class="sub-section-title" id="founder">FOUNDER</div>
-  <div class="grid">
-
-    <article class="card">
-      <div class="num">001 // FOUNDER</div>
-      <div class="name">Abdullah Zahoor</div>
-      <div class="role">FOUNDER</div>
-      <p class="bio">
-        The founder of DPS Special Forces. The visionary who built the squad
-        from the ground up and gave it its identity.
+  <!-- HIGHLIGHTED FOUNDER SECTION -->
+  <div class="founder-wrapper" id="founder-section" data-category="COMMAND">
+    <div class="sub-section-title">SUPREME COMMAND</div>
+    <article class="founder-card card-item" data-name="abdullah zahoor" data-role="founder">
+      <div class="founder-title">FOUNDER // COMMAND-01</div>
+      <div class="founder-name">Abdullah Zahoor</div>
+      <div class="role">SUPREME FOUNDER</div>
+      <p class="founder-bio">
+        The architect and founder of DPS Special Forces. Built the squad's foundation, standard, and tactical organizational structure.
       </p>
     </article>
-
   </div>
 
+  <!-- CLOSE MEMBERS / SUB-COMMAND SECTION -->
+  <div class="sub-section-title">COMMAND COUNCIL</div>
+  <div class="grid" id="close-members-grid">
 
-  <!-- ========== CLOSE MEMBERS ========== -->
-  <div class="sub-section-title" id="close-members">CLOSE MEMBERS</div>
-  <div class="grid">
-
-    <article class="card">
-      <div class="num">002 // CLOSE MEMBER</div>
+    <article class="card card-item" data-category="SADAR" data-name="ahmed malik khokhar" data-role="sadar">
+      <div class="card-header">
+        <span class="num">002 // SADAR</span>
+        <span class="clearance-tag">CLR: LVL-2</span>
+      </div>
       <div class="card-img">
-        <img src="khokhar.png" alt="Portrait of Ahmed Malik (Khokhar)" width="150" height="150">
+        <img src="khokhar.png" alt="Ahmed Malik" width="130" height="130" onerror="this.style.display='none'">
       </div>
       <div class="name">Ahmed Malik</div>
       <div class="role">SADAR</div>
-      <p class="bio">
-        A senior head figure in the hierarchy, representing authority
-        and squad leadership. THE SADAR
-      </p>
+      <p class="bio">Senior leadership head in the council, managing operations and hierarchy direction.</p>
     </article>
 
-    <article class="card">
-      <div class="num">003 // CLOSE MEMBER</div>
+    <article class="card card-item" data-category="COMMAND" data-name="shoaib" data-role="sub-administrator">
+      <div class="card-header">
+        <span class="num">003 // SUB-ADMIN</span>
+        <span class="clearance-tag">CLR: LVL-2</span>
+      </div>
       <div class="name">Shoaib</div>
-      <div class="role">SUB-ADMINISTRATOR </div>
-      <p class="bio">
-        The original architect of SSF. The one who started the whole operation
-        and gave the squad its identity.
-      </p>
+      <div class="role">SUB-ADMINISTRATOR</div>
+      <p class="bio">Core organizational architect responsible for squad operational framework and logistics.</p>
     </article>
 
-    <article class="card">
-      <div class="num">004 // CLOSE MEMBER</div>
+    <article class="card card-item" data-category="COMMAND" data-name="qalb e ahmed" data-role="chairman">
+      <div class="card-header">
+        <span class="num">004 // CHAIRMAN</span>
+        <span class="clearance-tag">CLR: LVL-2</span>
+      </div>
       <div class="name">Qalb E Ahmed</div>
       <div class="role">CHAIRMAN</div>
-      <p class="bio">
-        The chairman of the fictional council, overseeing the grand strategy
-        and squad traditions.
-      </p>
+      <p class="bio">Oversees executive decisions, squad traditions, and institutional council affairs.</p>
     </article>
 
-    <article class="card">
-      <div class="num">005 // ONLINE GROUP AND WEBSITE MANAGEMENT</div>
+    <article class="card card-item" data-category="COMMAND" data-name="ali umar" data-role="management">
+      <div class="card-header">
+        <span class="num">005 // MANAGEMENT</span>
+        <span class="clearance-tag">CLR: LVL-2</span>
+      </div>
       <div class="name">Ali Umar</div>
-      <div class="role">ALL MANAGEMENT.</div>
-      <p class="bio">
-        The central coordinator of the squad, managing the crew and keeping
-        everyone on the same page.
-      </p>
+      <div class="role">HEAD OF MANAGEMENT</div>
+      <p class="bio">Directs central coordination, network administration, and web infrastructure operations.</p>
     </article>
 
   </div>
 
-  <!-- ========== SADARS / MEMBERS ========== -->
-  <div class="sub-section-title" id="sadars-members">SADARS / MEMBERS</div>
-  <div class="grid">
+  <!-- FIELD UNITS & MEMBERS SECTION -->
+  <div class="sub-section-title">OPERATIONAL UNITS & PERSONNEL</div>
+  <div class="grid" id="main-roster-grid">
 
-    <article class="card">
-      <div class="num">006 // CLOSE MEMBER</div>
+    <article class="card card-item" data-category="SADAR" data-name="bilal naeem" data-role="root sadar">
+      <div class="card-header">
+        <span class="num">006 // SADAR</span>
+        <span class="clearance-tag">CLR: LVL-1</span>
+      </div>
       <div class="card-img">
-        <img src="Bilal.jpg" alt="Portrait of Bilal Naeem" width="150" height="150">
+        <img src="Bilal.jpg" alt="Bilal Naeem" width="130" height="130" onerror="this.style.display='none'">
       </div>
       <div class="name">Bilal Naeem</div>
       <div class="role">ROOT SADAR</div>
-      <p class="bio">
-        Root sadar of the group and controls most of the group activities.
-      </p>
+      <p class="bio">Controls group activities, local operational directives, and unit compliance.</p>
     </article>
 
-  </div>
-  
- <article class="card">
-      <div class="num">007 // INTERNATIONAL</div>
+    <article class="card card-item" data-category="MEMBER" data-name="adiyan" data-role="international administrator">
+      <div class="card-header"><span class="num">007 // INT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Adiyan</div>
-      <div class="role">INTERNATIONAL ADMINISTRATOR</div>
-      <p class="bio">
-        Handles imaginary international affairs and keeps DPS connected
-        beyond the usual borders.
-      </p>
+      <div class="role">INT. ADMINISTRATOR</div>
+      <p class="bio">Coordinates regional communication lines and extended squad network relations.</p>
     </article>
 
-    <article class="card">
-      <div class="num">008 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ali hammad" data-role="special force">
+      <div class="card-header"><span class="num">008 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ali Hammad</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A core fictional unit member trusted with the squad's most dramatic missions.
-      </p>
+      <p class="bio">Field deployment specialist assigned to core group tasks.</p>
     </article>
 
-    <article class="card">
-      <div class="num">009 // OPERATIONS</div>
+    <article class="card card-item" data-category="MEMBER" data-name="faris khan" data-role="leader">
+      <div class="card-header"><span class="num">009 // OPS</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Faris Khan</div>
-      <div class="role">LEADER</div>
-      <p class="bio">
-        The squad's legendary Yakki Master — a completely made-up title
-        reserved for maximum style.
-      </p>
+      <div class="role">OPERATIONS LEADER</div>
+      <p class="bio">Leads tactical operations and field execution strategies.</p>
     </article>
 
-    <article class="card">
-      <div class="num">010 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="hadi hussain" data-role="special force">
+      <div class="card-header"><span class="num">010 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Hadi Hussain</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A core member of the fictional special-force unit, always ready
-        for squad-level chaos.
-      </p>
+      <p class="bio">Core force operator handling tactical support units.</p>
     </article>
 
-    <article class="card">
-      <div class="num">011 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="hadi abbas" data-role="special force">
+      <div class="card-header"><span class="num">011 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Hadi Abbas</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        Another member of the elite fictional unit, adding strength to
-        the DPS roster.
-      </p>
+      <p class="bio">Specialized force unit active in group tactical maneuvers.</p>
     </article>
 
-    <article class="card">
-      <div class="num">012 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ali ammar" data-role="special force">
+      <div class="card-header"><span class="num">012 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ali Ammar</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A fictional field member representing the squad's fast-moving
-        special-force division.
-      </p>
+      <p class="bio">Field division operative managing regional communications.</p>
     </article>
 
-    <article class="card">
-      <div class="num">013 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ali haider" data-role="special force">
+      <div class="card-header"><span class="num">013 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ali Haider</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A member of the fictional special-force crew and part of the
-        DPS inner roster.
-      </p>
+      <p class="bio">Core squad representative active across tactical assignments.</p>
     </article>
 
-    <article class="card">
-      <div class="num">014 // INTERNATIONAL</div>
+    <article class="card card-item" data-category="MEMBER" data-name="jalal ud din" data-role="international force manager">
+      <div class="card-header"><span class="num">014 // INT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Jalal Ud Din</div>
-      <div class="role">INTERNATIONAL FORCE MANAGER</div>
-      <p class="bio">
-        Coordinates the fictional international force and keeps the
-        imaginary global division running.
-      </p>
+      <div class="role">INT. FORCE MANAGER</div>
+      <p class="bio">Coordinates external division outreach and cross-network management.</p>
     </article>
 
-    <article class="card">
-      <div class="num">015 // LOGISTICS</div>
+    <article class="card card-item" data-category="MEMBER" data-name="mohsin moin" data-role="logistics manager">
+      <div class="card-header"><span class="num">015 // LOG</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Mohsin Moin</div>
-      <div class="role">DOODH SUPPLY</div>
-      <p class="bio">
-        The team's milk supplier by the use of his great mummy for the
-        provision of milk service.
-      </p>
+      <div class="role">LOGISTICS MANAGER</div>
+      <p class="bio">Handles unit supply logistics, refreshment details, and internal support services.</p>
     </article>
 
-    <article class="card">
-      <div class="num">016 // UNIT</div>
-      <div class="name">Ali Haider</div>
-      <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        Listed again in the original roster — because apparently one
-        Ali Haider wasn't enough.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="num">017 // DIGITAL</div>
+    <article class="card card-item" data-category="MEMBER" data-name="abubakar" data-role="website manager">
+      <div class="card-header"><span class="num">017 // CYBER</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Abubakar</div>
       <div class="role">WEBSITE MANAGER</div>
-      <p class="bio">
-        Controls the fictional digital headquarters and makes sure
-        the DPS website stays online.
-      </p>
+      <p class="bio">Maintains digital deployment networks and server connectivity.</p>
     </article>
 
-    <article class="card">
-      <div class="num">018 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="muzan iqbal" data-role="special force">
+      <div class="card-header"><span class="num">018 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Muzan Iqbal</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A member of the fictional special-force division, representing
-        the squad's elite side.
-      </p>
+      <p class="bio">Elite division operative assigned to special assignments.</p>
     </article>
 
-    <article class="card">
-      <div class="num">019 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="abdullah munir" data-role="special force">
+      <div class="card-header"><span class="num">019 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Abdullah Munir</div>
       <div class="role">SPECIAL FORCE</div>
-      <p class="bio">
-        A final member of the fictional unit, completing the current DPS roster.
-      </p>
+      <p class="bio">Tactical squad member supporting active deployments.</p>
     </article>
 
-    <article class="card">
-      <div class="num">020 // UNIT</div>
-      <div class="name">SUBTAIN</div>
+    <article class="card card-item" data-category="COMMAND" data-name="subtain" data-role="head general">
+      <div class="card-header"><span class="num">020 // GENERAL</span><span class="clearance-tag">CLR: LVL-2</span></div>
+      <div class="name">Subtain</div>
       <div class="role">HEAD GENERAL</div>
-      <p class="bio">
-        One of the greatest members with connections for handling important issues.
-      </p>
+      <p class="bio">Senior command officer handling strategic relations and issue resolution.</p>
     </article>
 
-    <article class="card">
-      <div class="num">021 // UNIT</div>
-      <div class="name">RANA</div>
+    <article class="card card-item" data-category="MEMBER" data-name="rana" data-role="group member">
+      <div class="card-header"><span class="num">021 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
+      <div class="name">Rana</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">
-        Part of the special forces and added in group.
-      </p>
+      <p class="bio">Assigned active field member supporting operational logistics.</p>
     </article>
 
-    <article class="card">
-      <div class="num">022 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="hadi 804" data-role="group member">
+      <div class="card-header"><span class="num">022 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Hadi 804</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">
-        A member of the group.
-      </p>
+      <p class="bio">Registered network unit active in group affairs.</p>
     </article>
 
-    <article class="card">
-      <div class="num">023 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="rayyan mahmood" data-role="group member">
+      <div class="card-header"><span class="num">023 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Rayyan Mahmood</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">
-        A great member of the force.
-      </p>
+      <p class="bio">Dedicated force member contributing to local group objectives.</p>
     </article>
 
-    <article class="card">
-      <div class="num">024 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ahmer farooq" data-role="class member / tech expert">
+      <div class="card-header"><span class="num">024 // TECH</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ahmer Farooq</div>
-      <div class="role">CLASS MEMBER</div>
-      <p class="bio">
-        Code master and computer expert.
-      </p>
+      <div class="role">TECH EXPERT</div>
+      <p class="bio">Specializes in technical systems, computer networks, and code development.</p>
     </article>
 
-    <article class="card">
-      <div class="num">025 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="moiz shah" data-role="close member">
+      <div class="card-header"><span class="num">025 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Moiz Shah</div>
       <div class="role">CLOSE MEMBER</div>
-      <p class="bio">
-        One of the best members of the force.
-      </p>
+      <p class="bio">Trusted core force operative involved in primary activities.</p>
     </article>
 
-    <article class="card">
-      <div class="num">026 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="hussan gujjar" data-role="group member">
+      <div class="card-header"><span class="num">026 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Hussan Gujjar</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">
-        A member of the group.
-      </p>
+      <p class="bio">Active group member supporting unit initiatives.</p>
     </article>
 
-    <article class="card">
-      <div class="num">027 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ibrahim" data-role="group member">
+      <div class="card-header"><span class="num">027 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ibrahim</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">
-        A member of the group.
-      </p>
+      <p class="bio">Field deployment unit verified within current roster.</p>
     </article>
 
-    <article class="card">
-      <div class="num">028 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="zaryan" data-role="group member">
+      <div class="card-header"><span class="num">028 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Zaryan</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A newly added member of the fictional DPS roster, bringing fresh energy to the squad.</p>
+      <p class="bio">Fresh addition to the roster, supporting tactical deployments.</p>
     </article>
 
-    <article class="card">
-      <div class="num">029 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ahmed._.why" data-role="group member">
+      <div class="card-header"><span class="num">029 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Ahmed._.why</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A new member of the fictional force, officially added to the DPS network.</p>
+      <p class="bio">Roster operative verified under group network protocols.</p>
     </article>
 
-    <article class="card">
-      <div class="num">030 // CYBER UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="cyb3r" data-role="cyber member">
+      <div class="card-header"><span class="num">030 // CYBER</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Cyb3r</div>
       <div class="role">CYBER MEMBER</div>
-      <p class="bio">The digital-side addition to the fictional squad, bringing a cyber-themed identity to DPS.</p>
+      <p class="bio">Handles digital identity and cyber division directives.</p>
     </article>
 
-    <article class="card">
-      <div class="num">031 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="umais irfan" data-role="group member">
+      <div class="card-header"><span class="num">031 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Umais Irfan</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Active field force member supporting general operations.</p>
     </article>
 
-    <article class="card">
-      <div class="num">032 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="arman khokhar" data-role="group member">
+      <div class="card-header"><span class="num">032 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Arman Khokhar</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Group member integrated into active unit rosters.</p>
     </article>
 
-    <article class="card">
-      <div class="num">033 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="a_h_m_a_d 354" data-role="group member">
+      <div class="card-header"><span class="num">033 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">A_h_m_a_d 354</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Active unit member registered under tactical deployment.</p>
     </article>
 
-    <article class="card">
-      <div class="num">034 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="abdullah azeem" data-role="group member">
+      <div class="card-header"><span class="num">034 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Abdullah Azeem</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Tactical network member active across squad duties.</p>
     </article>
 
-    <article class="card">
-      <div class="num">035 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="adnan jutt" data-role="group member">
+      <div class="card-header"><span class="num">035 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Adnan Jutt</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Roster member active in general operational support.</p>
     </article>
 
-    <article class="card">
-      <div class="num">036 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="sheikh moied" data-role="group member">
+      <div class="card-header"><span class="num">036 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Sheikh Moied</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Verified member active across group communications.</p>
     </article>
 
-    <article class="card">
-      <div class="num">037 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="faisal joiya" data-role="group member">
+      <div class="card-header"><span class="num">037 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Faisal Joiya</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Standard field operative in good standing.</p>
     </article>
 
-    <article class="card">
-      <div class="num">038 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="rayan rashid" data-role="group member">
+      <div class="card-header"><span class="num">038 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Rayan Rashid</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Verified force member participating in group events.</p>
     </article>
 
-    <article class="card">
-      <div class="num">039 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="abdu.llah_507" data-role="group member">
+      <div class="card-header"><span class="num">039 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Abdu.llah_507</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Field deployment unit verified within squad database.</p>
     </article>
 
-    <article class="card">
-      <div class="num">040 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="yahya_dgaf026" data-role="group member">
+      <div class="card-header"><span class="num">040 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">yahya_dgaf026</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Roster operative active across local squad communications.</p>
     </article>
 
-    <article class="card">
-      <div class="num">041 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="chaudry_ayy1n222" data-role="group member">
+      <div class="card-header"><span class="num">041 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Chaudry_ayy1n222</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Assigned squad unit under regional division.</p>
     </article>
 
-    <article class="card">
-      <div class="num">042 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="ubaid_.s1" data-role="group member">
+      <div class="card-header"><span class="num">042 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">ubaid_.s1</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Field force member participating in group activities.</p>
     </article>
 
-    <article class="card">
-      <div class="num">043 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="itx saadi" data-role="group member">
+      <div class="card-header"><span class="num">043 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Itx Saadi</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Active group member registered on tactical records.</p>
     </article>
 
-    <article class="card">
-      <div class="num">044 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="sardar tayyab dogar" data-role="group member">
+      <div class="card-header"><span class="num">044 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Sardar Tayyab Dogar</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Verified force member assigned to regional duties.</p>
     </article>
 
-    <article class="card">
-      <div class="num">045 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="faranbutt_12" data-role="group member">
+      <div class="card-header"><span class="num">045 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">faranbutt_12</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Standard field operative verified in main roster.</p>
     </article>
 
-    <article class="card">
-      <div class="num">046 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="faiz.sajid16" data-role="group member">
+      <div class="card-header"><span class="num">046 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Faiz.sajid16</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Active squad unit assigned to field operations.</p>
     </article>
 
-    <article class="card">
-      <div class="num">047 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="m.ali_bhatti56" data-role="group member">
+      <div class="card-header"><span class="num">047 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">M.ali_bhatti56</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Verified force member participating in group events.</p>
     </article>
 
-    <article class="card">
-      <div class="num">048 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="_abubakar.imrar" data-role="group member">
+      <div class="card-header"><span class="num">048 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">_abubakar.imrar</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Network operative verified in standard unit roster.</p>
     </article>
 
-    <article class="card">
-      <div class="num">049 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="daniyal malik" data-role="group member">
+      <div class="card-header"><span class="num">049 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">Daniyal Malik</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Active field member registered in force database.</p>
     </article>
 
-    <article class="card">
-      <div class="num">050 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="m..wasif..t" data-role="group member">
+      <div class="card-header"><span class="num">050 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">m..wasif..t</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Standard squad member active in communications.</p>
     </article>
 
-    <article class="card">
-      <div class="num">051 // UNIT</div>
+    <article class="card card-item" data-category="MEMBER" data-name="mainadiyan" data-role="group member">
+      <div class="card-header"><span class="num">051 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
       <div class="name">mainadiyan</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Field deployment unit integrated into active roster.</p>
     </article>
 
-    <article class="card">
-      <div class="num">052 // UNIT</div>
-      <div class="name">hamza (hamzxkz)</div>
+    <article class="card card-item" data-category="MEMBER" data-name="hamza hamzxkz" data-role="group member">
+      <div class="card-header"><span class="num">052 // UNIT</span><span class="clearance-tag">CLR: LVL-1</span></div>
+      <div class="name">Hamza (hamzxkz)</div>
       <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
-    </article>
-
-    <article class="card">
-      <div class="num">053 // UNIT</div>
-      <div class="name">ali_ammar012</div>
-      <div class="role">GROUP MEMBER</div>
-      <p class="bio">A member of the group.</p>
+      <p class="bio">Verified force member participating in squad operations.</p>
     </article>
 
   </div>
-
 </section>
 
-  
+<!-- ABOUT SECTION -->
+<section id="about" class="about-section">
+  <div class="section-title">ABOUT THE NETWORK</div>
+  <div class="section-line"></div>
+  <div class="about-content">
+    <p>
+      The <strong>SSF Special Forces Network</strong> is a structured student organization dedicated to unity, coordination, and emergency readiness among its registered members. Built on values of loyalty and mutual support, this tactical database serves as a central registry for managing leadership, active units, and communication directives.
+    </p>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  © SSF SPECIAL FORCES // Developed by <span>MANAGEMENT</span>
+  © SSF SPECIAL FORCES // DEVELOPED & MAINTAINED BY <span>ALL MANAGEMENT</span> // 2026
 </footer>
+
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+let currentCategory = 'ALL';
+
+function enterSystem() {
+  const landing = document.getElementById('landing-screen');
+  landing.classList.add('hidden');
+}
+
+function setCategoryFilter(category, btnElement) {
+  currentCategory = category;
+  
+  // Update active button state
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  }
+
+  filterRoster();
+}
+
+function filterRoster() {
+  const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  const cardItems = document.querySelectorAll('.card-item');
+
+  cardItems.forEach(card => {
+    const name = card.getAttribute('data-name') || '';
+    const role = card.getAttribute('data-role') || '';
+    const category = card.getAttribute('data-category') || '';
+    const cardText = card.textContent.toLowerCase();
+
+    const matchesSearch = cardText.includes(searchInput) || name.includes(searchInput) || role.includes(searchInput);
+    const matchesCategory = (currentCategory === 'ALL') || (category === currentCategory);
+
+    if (matchesSearch && matchesCategory) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
 
 </body>
 </html>
