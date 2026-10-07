@@ -370,7 +370,7 @@ section {
   box-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
 }
 
-/* --- FOUNDER HIGHLIGHT CARD --- */
+/* --- SUPREME COMMAND HIGHLIGHT CARDS --- */
 .founder-wrapper {
   margin-bottom: 50px;
 }
@@ -382,10 +382,11 @@ section {
   padding: 35px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .founder-card::before {
-  content: "COMMAND_01";
+  content: attr(data-tag);
   position: absolute;
   top: 10px;
   right: 15px;
@@ -620,7 +621,7 @@ footer span {
     <span>DATABASE: ACTIVE</span>
   </div>
   <div class="status-item">
-    <span>TOTAL PERSONNEL: 053</span>
+    <span>TOTAL PERSONNEL: 056</span>
   </div>
   <div class="status-item">
     <span>CLEARANCE: AUTHORIZED</span>
@@ -663,10 +664,11 @@ footer span {
     </div>
   </div>
 
-  <!-- HIGHLIGHTED FOUNDER SECTION -->
+  <!-- HIGHLIGHTED SUPREME COMMAND SECTION -->
   <div class="founder-wrapper" id="founder-section" data-category="COMMAND">
     <div class="sub-section-title">SUPREME COMMAND</div>
-    <article class="founder-card card-item" data-name="abdullah zahoor" data-role="founder">
+    
+    <article class="founder-card card-item" data-category="COMMAND" data-name="abdullah zahoor" data-role="founder" data-tag="COMMAND_01">
       <div class="founder-title">FOUNDER // COMMAND-01</div>
       <div class="founder-name">Abdullah Zahoor</div>
       <div class="role">SUPREME FOUNDER</div>
@@ -674,15 +676,50 @@ footer span {
         The architect and founder of DPS Special Forces. Built the squad's foundation, standard, and tactical organizational structure.
       </p>
     </article>
-    
-<article class="card card-item" data-category="COMMAND" data-name="ali umar" data-role="CONTROLLER">
-      <div class="card-header">
-        <span class="num">005 // GROUP CONTOLLER</span>
-        <span class="clearance-tag">CLR: LVL-10</span>
-      </div>
-      <div class="name">Ali Umar</div>
+
+    <article class="founder-card card-item" data-category="COMMAND" data-name="ali umar" data-role="controller" data-tag="CLR: LVL-10">
+      <div class="founder-title">GROUP CONTROLLER // COMMAND-02</div>
+      <div class="founder-name">Ali Umar</div>
       <div class="role">HEAD OF ALL GROUP MANAGEMENT AND CONTROLLER</div>
-      <p class="bio">Owns website and controls all group work. Sadars and All roles are created by him.</p>
+      <p class="founder-bio">
+        Owns website and controls all group work. Sadars and all roles are created by him.
+      </p>
+    </article>
+
+    <article class="founder-card card-item" data-category="COMMAND" data-name="subtain" data-role="leader" data-tag="CLR: LVL-2">
+      <div class="founder-title">GROUP LEADER // COMMAND-03</div>
+      <div class="founder-name">Subtain</div>
+      <div class="role">LEADER</div>
+      <p class="founder-bio">
+        Leads the group and coordinates command decisions, leadership activities, and overall direction.
+      </p>
+    </article>
+
+    <article class="founder-card card-item" data-category="COMMAND" data-name="ahmad rashid" data-role="naib sadar" data-tag="CLR: LVL-1">
+      <div class="founder-title">DEPUTY LEADERSHIP // COMMAND-04</div>
+      <div class="founder-name">Ahmad Rashid</div>
+      <div class="role">NAIB SADAR</div>
+      <p class="founder-bio">
+        Deputy leadership officer supporting the Sadar in group coordination and internal affairs.
+      </p>
+    </article>
+
+    <article class="founder-card card-item" data-category="COMMAND" data-name="shoaib" data-role="sub-administrator" data-tag="CLR: LVL-2">
+      <div class="founder-title">CO-FOUNDER // COMMAND-05</div>
+      <div class="founder-name">Shoaib</div>
+      <div class="role">CO-FOUNDER</div>
+      <p class="founder-bio">
+        Co-founder of website responsible for the making of the entire group.
+      </p>
+    </article>
+
+    <article class="founder-card card-item" data-category="COMMAND" data-name="ayaan shezaad" data-role="vice leader" data-tag="CLR: LVL-2">
+      <div class="founder-title">VICE LEADER // COMMAND-06</div>
+      <div class="founder-name">Ayaan Shezaad</div>
+      <div class="role">VICE LEADER</div>
+      <p class="founder-bio">
+        Vice leader supporting senior command, coordination, and leadership responsibilities.
+      </p>
     </article>
   </div>
 
@@ -703,48 +740,44 @@ footer span {
       <p class="bio">Senior leadership head in the council, managing operations and hierarchy direction.</p>
     </article>
 
-    <article class="card card-item" data-category="COMMAND" data-name="shoaib" data-role="sub-administrator">
-      <div class="card-header">
-        <span class="num">003 // SUB-ADMIN</span>
-        <span class="clearance-tag">CLR: LVL-2</span>
-      </div>
-      <div class="name">Shoaib</div>
-      <div class="role">Co-founder</div>
-      <p class="bio">Co-founder of website responsible for the making of the enitre group.</p>
-    </article>
-
-    <article class="card card-item" data-category="COMMAND" data-name="qalb e ahmed" data-role="chairman">
+    <article class="card card-item" data-category="COMMAND" data-name="qalbe ahmad" data-role="chairman">
       <div class="card-header">
         <span class="num">004 // CHAIRMAN</span>
         <span class="clearance-tag">CLR: LVL-2</span>
       </div>
-      <div class="name">Qalb E Ahmed</div>
+      <div class="name">Qalbe Ahmad</div>
       <div class="role">CHAIRMAN</div>
       <p class="bio">Oversees executive decisions, squad traditions, and institutional council affairs.</p>
     </article>
 
+    <article class="card card-item" data-category="SADAR" data-name="daniyal khokhar" data-role="root sadar">
+      <div class="card-header">
+        <span class="num">007 // ROOT SADAR</span>
+        <span class="clearance-tag">CLR: LVL-1</span>
+      </div>
+      <div class="name">Daniyal Khokhar</div>
+      <div class="role">ROOT SADAR</div>
+      <p class="bio">Root Sadar responsible for leadership coordination, group direction, and operational oversight.</p>
+    </article>
+
     <article class="card card-item" data-category="SADAR" data-name="bilal naeem" data-role="root sadar">
       <div class="card-header">
-        <span class="num">006 // SADAR</span>
+        <span class="num">008 // SADAR</span>
         <span class="clearance-tag">CLR: LVL-1</span>
       </div>
       <div class="card-img">
         <img src="Bilal.jpg" alt="Bilal Naeem" width="130" height="130" onerror="this.style.display='none'">
       </div>
       <div class="name">Bilal Naeem</div>
-      <div class="role">ROOT SADAR</div>
+      <div class="role">Critic</div>
       <p class="bio">Controls group activities, local operational directives, and unit compliance.</p>
     </article>
-
-    
 
   </div>
 
   <!-- FIELD UNITS & MEMBERS SECTION -->
   <div class="sub-section-title">OPERATIONAL UNITS & PERSONNEL</div>
   <div class="grid" id="main-roster-grid">
-
-    
 
     <article class="card card-item" data-category="MEMBER" data-name="adiyan" data-role="international administrator">
       <div class="card-header"><span class="num">007 // INT</span><span class="clearance-tag">CLR: LVL-1</span></div>
@@ -828,13 +861,6 @@ footer span {
       <div class="name">Abdullah Munir</div>
       <div class="role">SPECIAL FORCE</div>
       <p class="bio">Tactical squad member supporting active deployments.</p>
-    </article>
-
-    <article class="card card-item" data-category="COMMAND" data-name="subtain" data-role="head general">
-      <div class="card-header"><span class="num">020 // GENERAL</span><span class="clearance-tag">CLR: LVL-2</span></div>
-      <div class="name">Subtain</div>
-      <div class="role">HEAD GENERAL</div>
-      <p class="bio">Senior command officer handling strategic relations and issue resolution.</p>
     </article>
 
     <article class="card card-item" data-category="MEMBER" data-name="rana" data-role="group member">
